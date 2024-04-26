@@ -2,7 +2,9 @@ const input=document.querySelector(".input-text")
 input.addEventListener("keydown",e=>{
     console.log(e);
     if(e.key=='Enter'){
-        if(input.value!="")
+        if(input.value=="**")
+            removeDiv();
+        else if(input.value!="")
             insertDiv(input.value)
         input.value="";
     }
