@@ -125,7 +125,6 @@ function shake(){
     input_field.setAttribute('style',"animation:shake 0.38s")
     setTimeout(()=>{
         input_field.removeAttribute('style');
-        console.log("shake succesful")
     },400)
 }
 
@@ -176,6 +175,7 @@ input.addEventListener("keydown",(e)=>{
         takeGuess(input.value.toUpperCase())
         input.value='';
         if(shown_index.length==word.length){
+            result.innerHTML='YOU WIN';
             result.style.visibility='visible'
             endGame();
         }
