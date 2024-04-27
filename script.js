@@ -125,6 +125,7 @@ function shake(){
     input_field.setAttribute('style',"animation:shake 0.38s")
     setTimeout(()=>{
         input_field.removeAttribute('style');
+        console.log("shake succesful")
     },400)
 }
 
@@ -134,6 +135,7 @@ function takeGuess(guess){
         console.log(`key: ${key}`);
         if(key==0){
             writePrompt("incorrectGuess")
+            wrongGuess.innerHTML=`${wrongGuess.innerHTML}  ${guess}`
             displayState(guessesLeft)
             guessesLeft=guessesLeft-1
             shake();
@@ -158,6 +160,8 @@ function endGame(){
     input.setAttribute('disabled','')
     play_button.innerHTML='<p>Play Again<\p>'
     play_button.style.visibility='visible'
+    wrongGuess.innerHTML='wrongGuesses: '
+    wrongGuess.style.visibility='hidden'
 }
 
 
@@ -166,6 +170,7 @@ let shown_index=[]
 let guessesLeft=6
 const input=document.querySelector('.input-text')
 const result=document.querySelector('.result')
+const wrongGuess=document.querySelector('.wrong-guesses')
 let word='';
 
 
@@ -191,13 +196,14 @@ input.addEventListener("keydown",(e)=>{
 
 const play_button=document.querySelector('.play')
 play_button.addEventListener('click',(e)=>{
+    play_button.style.visibility='hidden'
+    wrongGuess.style.visibility='visible'
     resetState();
     writePrompt('');
     result.style.visibility='hidden'
     guessesLeft=6;
     shown_index=[];
     document.querySelector('.letters').innerHTML=''
-    play_button.style.visibility='hidden'
     input.removeAttribute('disabled');
     word=pickRandomWord(wordlist)
     displayLetterBox(word);

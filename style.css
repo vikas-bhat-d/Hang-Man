@@ -143,9 +143,11 @@ svg {
     justify-content: center;
     border-radius: 10px;
     cursor: pointer;
+    margin: 10px 10px;
     visibility:visible;
 }
 .start-play{
+    margin: 10px 10px;
     position:absolute;
     background-color: #161717;
     width: 100%;
@@ -164,6 +166,17 @@ svg {
     fill: rgb(96, 94, 94);
 }
 
+.wrong-guesses{
+    display: flex;
+    align-items: center;
+    min-width: 130px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    border:solid 1px #605e5e;
+    font-size: 15px;
+    margin: 10px 10px;
+    visibility: hidden;
+}
 @keyframes shake{
     0%{
         transform: translateX(0);
