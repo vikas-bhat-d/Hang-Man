@@ -174,7 +174,7 @@ svg {
     border-radius: 10px;
     border:solid 1px #605e5e;
     font-size: 15px;
-    margin: 10px 10px;
+    margin: 0px 10px;
     visibility: hidden;
 }
 @keyframes shake{
