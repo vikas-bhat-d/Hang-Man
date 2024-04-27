@@ -167,6 +167,7 @@ svg {
 }
 
 .wrong-guesses{
+    position:absolute;
     display: flex;
     align-items: center;
     min-width: 130px;
@@ -175,6 +176,7 @@ svg {
     border:solid 1px #605e5e;
     font-size: 15px;
     margin: 0px 10px;
+    bottom: 20px;
     visibility: hidden;
 }
 @keyframes shake{
