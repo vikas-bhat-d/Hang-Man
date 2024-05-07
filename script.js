@@ -1,5 +1,3 @@
-
-
 function insertDiv(item){
     const newdiv=document.createElement('div')
     newdiv.innerHTML=`<div class="front">_</div><div class="back">${item}</div>`;
@@ -57,7 +55,7 @@ function displayProblem(){
     else{
         n=Math.floor(Math.random()*((word.length/1.8)-3)+3)
     }
-    
+
     let index;
     for (let i = 0; i < n && shown_index.length!=word.length; i++) {
         do{
@@ -155,9 +153,33 @@ function endGame(){
     play_button.style.visibility='visible'
     wrongGuess.innerHTML='wrongGuesses: '
     wrongGuess.style.visibility='hidden'
+    updateCount();
+    saveCount();
+    getCount();
+    updateCount();
+}
+function updateCount(){
+    document.querySelector('#won').innerHTML=`Won: ${Resultdata.won}`
+    document.querySelector('#lost').innerHTML=`Lost: ${Resultdata.lost}`
+}
+
+function getCount(){
+    if(localStorage.getItem("won") && localStorage.getItem("lost")){
+    Resultdata.won=parseInt(localStorage.getItem("won"))
+    Resultdata.lost=parseInt(localStorage.getItem("lost"))
+    }
+}
+
+function saveCount(){
+    // localStorage.setItem("data",document.querySelector('.stored-result').innerHTML)
+    localStorage.setItem("won",Resultdata.won)
+    localStorage.setItem("lost",Resultdata.lost)
+
 }
 
 function main(){
+    getCount();
+    updateCount();
     input.addEventListener("keydown",(e)=>{
         writePrompt('')
         if(e.key=='Enter'){
@@ -166,6 +188,7 @@ function main(){
             if(shown_index.length==word.length){
                 result.innerHTML='YOU WIN';
                 result.style.visibility='visible'
+                Resultdata.won+=1;
                 endGame();
             }
             else if(guessesLeft==0)
@@ -173,6 +196,7 @@ function main(){
                 result.innerHTML='YOU LOOSE';
                 result.style.visibility='visible';
                 writePrompt(`Word was: ${word}`)
+                Resultdata.lost+=1;
                 endGame();
             }
         }
@@ -214,6 +238,10 @@ const wrongGuess=document.querySelector('.wrong-guesses')
 const start_button=document.querySelector('.start-play')
 const play_button=document.querySelector('.play')
 let word='';
+let Resultdata={
+    won:0,
+    lost:0
+}
 
 fetch('words.txt')
 .then((response)=>{
