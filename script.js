@@ -153,7 +153,6 @@ function endGame(){
     play_button.style.visibility='visible'
     wrongGuess.innerHTML='wrongGuesses: '
     wrongGuess.style.visibility='hidden'
-    updateCount();
     saveCount();
     getCount();
     updateCount();
